@@ -1,2 +1,2 @@
 # PubSubSystem
-A publisher-subscriber system for cs 212 project
+A publisher-subscriber system based on java
