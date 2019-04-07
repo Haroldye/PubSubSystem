@@ -10,7 +10,6 @@ import events.EventType;
 import pubSubServer.ChannelEventDispatcher;
 
 public class AStrategy implements IStrategy {
-	
 
 	public void doPublish(int publisherId) {
 		List<String> listOfChannels = new ArrayList<String>();
@@ -19,7 +18,6 @@ public class AStrategy implements IStrategy {
 		AbstractEvent event = EventFactory.createEvent(EventType.TypeA, publisherId, new EventMessage("h1", "b1")); 
 		ChannelEventDispatcher.getInstance().postEvent(event, listOfChannels);
 		System.out.println("Publisher " + publisherId + " has published a default event," + event);
-		
 		
 	}
 

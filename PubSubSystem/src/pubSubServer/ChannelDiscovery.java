@@ -11,9 +11,11 @@ import subscribers.AbstractSubscriber;
  * Allows for the discovery of available channels for subscription from {@link AbstractSubscriber} that want to subscribe to them
  */
 public class ChannelDiscovery {
-	
+	private static ChannelDiscovery instance = null;
 	
 	public static ChannelDiscovery getInstance() {
+		if (instance == null)
+			instance = new ChannelDiscovery();
 		return instance;
 	}
 	

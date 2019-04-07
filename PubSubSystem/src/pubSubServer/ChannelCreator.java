@@ -10,10 +10,12 @@ package pubSubServer;
 public class ChannelCreator {
 	
 	private ChannelPoolManager cpm = null;
-	
+	private static ChannelCreator instance = null;
 	protected static ChannelCreator getInstance() {
+		if (instance == null)
+			instance = new ChannelCreator();
 		return instance;
-	}
+		}
 
 	
 	

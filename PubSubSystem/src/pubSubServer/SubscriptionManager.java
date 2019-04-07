@@ -10,10 +10,12 @@ import subscribers.AbstractSubscriber;
  *  exposes the subscribe, and unsubscribe methods to the clients 
  */
 public class SubscriptionManager {
-
+	private static SubscriptionManager instance = null;
 	private ChannelPoolManager cpManager;
 	
 	public static SubscriptionManager getInstance() {
+		if (instance == null)
+			instance = new SubscriptionManager();
 		return instance;
 	}
 	
