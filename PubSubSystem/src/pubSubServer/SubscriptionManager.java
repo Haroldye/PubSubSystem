@@ -1,17 +1,8 @@
 package pubSubServer;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import states.subscriber.StateName;
-import subscribers.SubscriberFactory;
-import subscribers.SubscriberType;
 import subscribers.AbstractSubscriber;
 /**
  * @author kkontog, ktsiouni, mgrigori
@@ -32,6 +23,7 @@ public class SubscriptionManager {
 	//private List<AbstractSubscriber> subscriberlList = new ArrayList<AbstractSubscriber>();
 	
 	private SubscriptionManager() {
+		cpManager = ChannelPoolManager.getInstance();
 		/*
 		String defaultChannel = "main";
 		AbstractSubscriber defaultSub;
@@ -39,7 +31,6 @@ public class SubscriptionManager {
 				SubscriberType.values()[0], 
 				StateName.values()[0]);
 		subChannelMap.put(defaultSub, defaultChannel);*/
-		cpManager = ChannelPoolManager.getInstance();
 	}
 	
 	public static SubscriptionManager getInstance() {

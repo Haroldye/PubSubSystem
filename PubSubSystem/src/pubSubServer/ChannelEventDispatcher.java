@@ -11,10 +11,19 @@ import publishers.AbstractPublisher;
  * MUST IMPLEMENT the Singleton design pattern
  * Class providing an interface for {@link AbstractPublisher} objects to cover their publishing needs 
  */
+/**
+ * 
+ * @editor H.,
+ *
+ */
 public class ChannelEventDispatcher {
 
 	private ChannelPoolManager cpManager;
 	private static ChannelEventDispatcher instance = null;
+	
+	private ChannelEventDispatcher() { 
+		cpManager = ChannelPoolManager.getInstance();
+	}
 	
 	public static ChannelEventDispatcher getInstance() {
 		if (instance == null)

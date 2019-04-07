@@ -11,6 +11,11 @@ public class ChannelCreator {
 	
 	private ChannelPoolManager cpm = null;
 	private static ChannelCreator instance = null;
+	
+	private ChannelCreator() { 
+		cpm = ChannelPoolManager.getInstance();
+	}
+	
 	protected static ChannelCreator getInstance() {
 		if (instance == null)
 			instance = new ChannelCreator();
