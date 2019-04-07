@@ -18,6 +18,12 @@ public interface IStrategy {
 	 */
 	public void doPublish(int publisherId);
 	
+	//AStractary.java
+	//List<String> listOfChannels = new ArrayList<String>();
+	//listOfChannels.add("cars");
+	//listOfChannels.add("");
+	//AbsstractEvent event = EventfACTORY.CREATEeVENT(EventType TypeA, publisherId, NEW eVENTmESSAGE("XX","XX");// below doesnt have this line
+	//channelEventDispatcher.getInstance().postEvent(event, listOfChannels);
 	
 	/**
 	 * 

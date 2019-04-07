@@ -49,8 +49,5 @@ public abstract class AbstractEvent {
 	protected EventMessage getPayload() {
 		return payload;
 	}
-	
-	
-	
-	
+
 }
