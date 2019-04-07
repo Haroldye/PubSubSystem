@@ -1,10 +1,11 @@
 package subscribers;
 
+import states.subscriber.StateFactory;
 import states.subscriber.StateName;
 
 
 /**
- * @author kkontog, ktsiouni, mgrigori
+ * @author kkontog, ktsiouni, mgrigori; Howar Ye
  *  
  */
 /**
@@ -12,6 +13,10 @@ import states.subscriber.StateName;
  * creates new {@link AbstractSubscriber} objects
  * contributes to the State design pattern
  * implements the FactoryMethod design pattern   
+ */
+/**
+ * @author H.Ye
+ * implement the full code of createSubscriber
  */
 public class SubscriberFactory {
 
@@ -23,10 +28,23 @@ public class SubscriberFactory {
 	 */
 	public static AbstractSubscriber createSubscriber(SubscriberType subscriberType, StateName stateName) {
 		AbstractSubscriber CSA = null;
+		// type alpha, beta, gamma
 		switch (subscriberType) {
 			case alpha : 
+				CSA = new ConcreteSubscriberA();
+				CSA.setState(stateName);
+				return CSA;
+			case beta :
+				CSA = new ConcreteSubscriberA();
+				CSA.setState(stateName);
+				return CSA;
+			case gamma :
+				CSA = new ConcreteSubscriberA();
+				CSA.setState(stateName);
 				return CSA;
 			default:
+				CSA = new ConcreteSubscriberA();
+				CSA.setState(stateName);
 				return CSA;
 		}
 	}

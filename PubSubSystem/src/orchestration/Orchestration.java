@@ -38,7 +38,8 @@ public class Orchestration {
 		try {
 			listOfPublishers = testHarness.createPublishers();
 			listOfSubscribers = testHarness.createSubscribers();
-
+			//System.out.println("list of publisher: " + listOfPublishers);
+			//System.out.println("list of sub: " + listOfSubscribers);
 			List<AbstractChannel> channels = ChannelDiscovery.getInstance().listChannels();
 			//For demonstration purposes only
 			try {
@@ -46,16 +47,16 @@ public class Orchestration {
 				List<String> channelList = new ArrayList<String>();
 				String line = "";
 				while((line = initialChannels.readLine()) != null )
-				{
-					System.out.println(line); //test line
-					
+				{			
 					channelList.add(line);
 				}
 				int subscriberIndex = 0;
 				for(AbstractSubscriber subscriber : listOfSubscribers) {
-					int channelName = subscriberIndex%channelList.size();
-					String name = channelList.get(channelName);
-					subscriber.subscribe(name);
+					subscriber.subscribe(channelList.get(subscriberIndex%channelList.size()));
+					//String channelName = channelList.get(subscriberIndex%channelList.size());
+					// test on subscribing
+					//System.out.println("Channel name: "+channelName + " Subs name: " + subscriber);
+					//subscriber.subscribe(channelName);
 					subscriberIndex++;
 				}
 				initialChannels.close();
@@ -122,10 +123,6 @@ public class Orchestration {
 		}
 
 
-
-
-
-
 	}
 
 
@@ -170,7 +167,9 @@ public class Orchestration {
 			newSub = SubscriberFactory.createSubscriber(
 					SubscriberType.values()[StateConfigIntArray[0]], 
 					StateName.values()[StateConfigIntArray[1]]);
-
+			// 
+			// System.out.println("sub type: " + SubscriberType.values()[StateConfigIntArray[0]] + " state value: " + StateName.values()[StateConfigIntArray[1]]);
+			//System.out.println("newsub = " + newSub);
 			listOfSubscribers.add(newSub);
 			subscriberMap.put(subCounter, newSub);
 			subCounter++;
