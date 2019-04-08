@@ -13,7 +13,7 @@ import states.subscriber.StateName;
  */
 public abstract class AbstractSubscriber implements IEntity {
 	
-	
+	public int id;
 	protected IState state;
 
 	/**
@@ -44,5 +44,6 @@ public abstract class AbstractSubscriber implements IEntity {
 	 * @param channelName type String
 	 */
 	public void unsubscribe(String channelName) {};
-	
+
+
 }

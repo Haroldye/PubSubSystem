@@ -23,6 +23,9 @@ public class StrategyFactory {
 			case BStrategy:
 				strategy = new BStrategy();
 				return strategy;
+			case CStrategy:
+				strategy = new CStrategy();
+				return strategy;
 			default:
 				strategy = new DefaultStrategy();
 				return strategy;

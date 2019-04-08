@@ -2,6 +2,8 @@ package publishers;
 
 import baseEntities.IEntity;
 import events.AbstractEvent;
+import events.EventFactory;
+import events.EventMessage;
 import strategies.publisher.IStrategy;
 
 /**
@@ -33,6 +35,8 @@ public abstract class AbstractPublisher implements IEntity {
 	 * @param event an event which is to be published
 	 * 
 	 */
-	public void publish() {};
+	public void publish() {}
+
+	public void publish(String string, EventMessage eMsg) {};
 
 }

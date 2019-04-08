@@ -1,6 +1,8 @@
 package publishers;
 
 import events.AbstractEvent;
+import events.EventFactory;
+import events.EventMessage;
 import strategies.publisher.IStrategy;
 import strategies.publisher.StrategyFactory;
 
@@ -41,5 +43,8 @@ public class ConcretePublisher extends AbstractPublisher {
 	public void publish() {
 		publishingStrategy.doPublish(this.hashCode());
 	}
-
+	
+	public void publish(String type, EventMessage msg) {
+		System.out.println("Eventtype: " + type + " and event msg " + msg + " has been published");
+	}
 }

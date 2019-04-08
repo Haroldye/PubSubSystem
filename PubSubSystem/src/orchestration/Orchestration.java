@@ -9,9 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import events.AbstractEvent;
 import events.EventFactory;
 import events.EventMessage;
 import events.EventType;
+import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import pubSubServer.AbstractChannel;
 import pubSubServer.ChannelAccessControl;
 import pubSubServer.ChannelDiscovery;
@@ -28,7 +30,7 @@ import subscribers.SubscriberType;
 public class Orchestration {
 	protected static Map<Integer, AbstractPublisher> publisherMap = new HashMap<Integer, AbstractPublisher>();
 	protected static Map<Integer, AbstractSubscriber> subscriberMap = new HashMap<Integer, AbstractSubscriber>();
-	protected static Integer subCounter = 0, pubCounter = 0;
+	protected static Integer subID = 0, pubID = 0;
 
 	public static void main(String[] args) {
 
@@ -122,7 +124,61 @@ public class Orchestration {
 			e.printStackTrace();
 		}
 */
-
+	/**
+	 * My implementation	
+	 * @author H. Ye
+	 */
+		System.out.println("\nTest for driving the program: ");
+		try {
+			BufferedReader PathReader = new BufferedReader(new FileReader(new File("path.txt")));
+			while(PathReader.ready()) {
+				String PathConfigLine = PathReader.readLine();
+				String[] PathConfigArray = PathConfigLine.split(" ");
+				
+				if (PathConfigArray[0].equals("SUB")) {
+					subscriberMap.get(Integer.parseInt(PathConfigArray[1])).subscribe(PathConfigArray[2]);
+					// can also do printing in SubscriptionManager where declare subscribe() to make sure done subscribing
+					System.out.println("main(), SubscriberID: " + PathConfigArray[1] + " has subscribed channel: " + PathConfigArray[2]);
+				}
+				
+				else if (PathConfigArray[0].equals("PUB")) {
+					if (PathConfigArray.length == 2) {
+						publisherMap.get(Integer.parseInt(PathConfigArray[1])).publish();
+					}					
+					else if (PathConfigArray.length == 5) {						
+						//String eType;
+						EventMessage eMsg = new EventMessage(PathConfigArray[3],PathConfigArray[4]);
+						switch(PathConfigArray[2]) {
+						case "0": PathConfigArray[2] = "TypeA";
+						case "1": PathConfigArray[2] = "TypeB";
+						case "2": PathConfigArray[2] = "TypeC";
+						default: PathConfigArray[2] = "TypeA";
+						}/*
+						AbstractEvent newEvent;
+						newEvent = new EventFactory();
+						EventFactory.createEvent(EventType.values()[eType], Integer.parseInt(PathConfigArray[1]), eMsg);*/
+						publisherMap.get(Integer.parseInt(PathConfigArray[1])).publish(PathConfigArray[2],eMsg);;
+					}
+					else						
+						System.out.println("Wrong input in path.txt file");
+				}
+				
+				else if (PathConfigArray[0].equals("BLOCK")) {
+					System.out.println("\nSubID: " + PathConfigArray[1] + " blocked the channel " + PathConfigArray[2]);
+				}
+				
+				else if (PathConfigArray[0].equals("UNBLOCK")) {
+					System.out.println("\nSubID: " + PathConfigArray[1] + " unblocked the channel " + PathConfigArray[2]);
+				}
+				
+				else
+					System.out.println("unexpected input in path.txt.");
+			}
+			PathReader.close();
+		}catch(IOException ioe) {
+			System.out.println("Error when driving the program.");
+		}
+		
 	}
 
 
@@ -131,7 +187,7 @@ public class Orchestration {
 		List<AbstractPublisher> listOfPublishers = new ArrayList<>();
 		AbstractPublisher newPub;
 		BufferedReader StrategyBufferedReader = new BufferedReader(new FileReader(new File("Strategies.str")));
-
+		
 		while(StrategyBufferedReader.ready()) {
 			String PublisherConfigLine = StrategyBufferedReader.readLine();
 			String[] PublisherConfigArray = PublisherConfigLine.split("\t");
@@ -144,8 +200,8 @@ public class Orchestration {
 					StrategyName.values()[PublisherConfigIntArray[1]]);
 
 			listOfPublishers.add(newPub);
-			publisherMap.put(pubCounter, newPub);
-			pubCounter++;
+			publisherMap.put(pubID, newPub);
+			pubID++;
 		}
 		StrategyBufferedReader.close();
 		return listOfPublishers;
@@ -156,7 +212,7 @@ public class Orchestration {
 		List<AbstractSubscriber> listOfSubscribers = new ArrayList<>();
 		AbstractSubscriber newSub;
 		BufferedReader StateBufferedReader = new BufferedReader(new FileReader(new File("States.sts")));
-
+		
 		while(StateBufferedReader.ready()) {
 			String StateConfigLine = StateBufferedReader.readLine();
 			String[] StateConfigArray = StateConfigLine.split("\t");
@@ -171,8 +227,8 @@ public class Orchestration {
 			// System.out.println("sub type: " + SubscriberType.values()[StateConfigIntArray[0]] + " state value: " + StateName.values()[StateConfigIntArray[1]]);
 			//System.out.println("newsub = " + newSub);
 			listOfSubscribers.add(newSub);
-			subscriberMap.put(subCounter, newSub);
-			subCounter++;
+			subscriberMap.put(subID, newSub);
+			subID++;
 		}
 		StateBufferedReader.close();
 		return listOfSubscribers;

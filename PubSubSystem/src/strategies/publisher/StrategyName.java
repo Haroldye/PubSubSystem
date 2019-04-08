@@ -9,5 +9,5 @@ package strategies.publisher;
  *  must be added here
  */
 public enum StrategyName {
-	AStrategy, BStrategy, Default
+	AStrategy, BStrategy, CStrategy, Default
 }

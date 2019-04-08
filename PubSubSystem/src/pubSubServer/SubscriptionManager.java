@@ -51,11 +51,11 @@ public class SubscriptionManager {
 		//channel.subscribe(subscriber);
 		if (channel != null)
 			subChannelMap.put(subscriber, channelName);
-		
+		//System.out.println("Subscriber has subscribed channel " + channelName);
 	}
 	
 	/**
-	 * Completes the unsubscription of the provided ISubscriber from the specified, by the channelName, AbstractChannel
+	 * Completes the unSubscription of the provided ISubscriber from the specified, by the channelName, AbstractChannel
 	 * @param channelName the name of the AbstractChannel from which the ISubscriber wants to unsubscribe
 	 * @param subscriber the reference to an ISubscriber object
 	 */
@@ -64,6 +64,7 @@ public class SubscriptionManager {
 		AbstractChannel channel = cpManager.findChannel(channelName);
 		if (channel != null)
 			subChannelMap.remove(subscriber, channelName);
+		//System.out.println("Subscriber has unSubscribed channel " + channelName);
 		
 	}
 	

@@ -24,8 +24,14 @@ class ConcreteSubscriberA extends AbstractSubscriber {
 	public void setState(StateName stateName) {
 		state = StateFactory.createState(stateName);
 	}
-	
-	
+	/*
+	// set subID in case sub has same state(name)
+	public void setID(int subID) {
+		id = subID;
+	}
+	public int getID() {
+		return id;
+	}*/
 	/* (non-Javadoc)
 	 * @see subscribers.ISubscriber#alert(events.AbstractEvent, java.lang.String)
 	 */
