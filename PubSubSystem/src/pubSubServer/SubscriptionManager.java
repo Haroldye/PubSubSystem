@@ -22,7 +22,7 @@ public class SubscriptionManager {
 	private Map<AbstractSubscriber, String> subChannelMap = new HashMap<AbstractSubscriber, String>();
 	//private List<AbstractSubscriber> subscriberlList = new ArrayList<AbstractSubscriber>();
 	
-	private SubscriptionManager() {
+	public SubscriptionManager() {
 		cpManager = ChannelPoolManager.getInstance();
 		/*
 		String defaultChannel = "main";

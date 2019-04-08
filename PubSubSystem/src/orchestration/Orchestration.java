@@ -82,48 +82,6 @@ public class Orchestration {
 			publisher.publish();
 		}
 
-/*
-		try {
-
-			BufferedReader PathBufferedReader = new BufferedReader(new FileReader(new File("path.txt")));
-			while(PathBufferedReader.ready()) {
-				String PathConfigLine = PathBufferedReader.readLine();
-				String[] PathConfigArray = PathConfigLine.split("\t");
-
-				if (PathConfigArray[0].equals("SUB")) 
-				{
-					subscriberMap.get(PathConfigArray[1]).subscribe(PathConfigArray[2]);;
-				}
-				else if  (PathConfigArray[0].equals("PUB")) {
-					if (PathConfigArray.length < 2) publisherMap.get(PathConfigArray[1]).publish();
-					else if (PathConfigArray.length >= 2) {
-						if (PathConfigArray[2] == "TypeA") publisherMap.get(PathConfigArray[1]).publish(EventFactory.createEvent(EventType.TypeA,  Integer.parseInt(PathConfigArray[1]), new EventMessage (PathConfigArray[3], PathConfigArray[4])));
-						else if (PathConfigArray[2] == "TypeB") publisherMap.get(PathConfigArray[1]).publish(EventFactory.createEvent(EventType.TypeB,  Integer.parseInt(PathConfigArray[1]), new EventMessage (PathConfigArray[3], PathConfigArray[4])));
-						else if (PathConfigArray[2] == "TypeC") publisherMap.get(PathConfigArray[1]).publish(EventFactory.createEvent(EventType.TypeC,  Integer.parseInt(PathConfigArray[1]), new EventMessage (PathConfigArray[3], PathConfigArray[4])));	
-					}
-				}
-				//				else if (PathConfigArray[0].equals("BLOCK")) {
-				//					if (PathConfigArray[1].equals('0')) ChannelAccessControl.blockSubcriber(SubscriberFactory.createSubscriber(SubscriberType.alpha, StateName.astate)  , PathConfigArray[2]);
-				//					else if (PathConfigArray[1].equals('1')) ChannelAccessControl.blockSubcriber(SubscriberFactory.createSubscriber(SubscriberType.beta, StateName.bstate)  , PathConfigArray[2]);
-				//					else if (PathConfigArray[1].equals('2')) ChannelAccessControl.blockSubcriber(SubscriberFactory.createSubscriber(SubscriberType.gamma, StateName.cstate)  , PathConfigArray[2]);
-				//					else ChannelAccessControl.blockSubcriber(SubscriberFactory.createSubscriber(SubscriberType.alpha, StateName.defaultState), PathConfigArray[2]);
-				//				}
-				//				else if (PathConfigArray[0].equals("UNBLOCK")) {
-				//					
-				//					if (PathConfigArray[1].equals('0')) ChannelAccessControl.unBlockSubcriber(SubscriberFactory.createSubscriber(SubscriberType.alpha, StateName.astate)  , PathConfigArray[2]);
-				//					else if (PathConfigArray[1].equals('1')) ChannelAccessControl.unBlockSubcriber(SubscriberFactory.createSubscriber(SubscriberType.beta, StateName.bstate)  , PathConfigArray[2]);
-				//					else if (PathConfigArray[1].equals('2')) ChannelAccessControl.unBlockSubcriber(SubscriberFactory.createSubscriber(SubscriberType.gamma, StateName.cstate)  , PathConfigArray[2]);
-				//					else ChannelAccessControl.unBlockSubcriber(SubscriberFactory.createSubscriber(SubscriberType.alpha, StateName.defaultState), PathConfigArray[2]);				
-				//					
-				//				}
-			}
-
-			PathBufferedReader.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-*/
 	/**
 	 * Driving the program test	
 	 * @author H. Ye
@@ -165,11 +123,15 @@ public class Orchestration {
 				}
 				
 				else if (PathConfigArray[0].equals("BLOCK")) {
-					System.out.println("\nSubID: " + PathConfigArray[1] + " blocked the channel " + PathConfigArray[2]);
+					SubscriptionManager m = new SubscriptionManager();
+					m.unSubscribe(PathConfigArray[2], subscriberMap.get(Integer.parseInt(PathConfigArray[1])));
+					System.out.println("\nSubscriber with SubID: " + PathConfigArray[1] + " blocked the channel " + PathConfigArray[2]);
 				}
 				
 				else if (PathConfigArray[0].equals("UNBLOCK")) {
-					System.out.println("\nSubID: " + PathConfigArray[1] + " unblocked the channel " + PathConfigArray[2]);
+					SubscriptionManager m = new SubscriptionManager();
+					m.subscribe(PathConfigArray[2], subscriberMap.get(Integer.parseInt(PathConfigArray[1])));
+					System.out.println("\nSubscriber with SubID: " + PathConfigArray[1] + " unblocked the channel " + PathConfigArray[2]);
 				}
 				
 				else
