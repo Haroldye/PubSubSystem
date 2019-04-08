@@ -17,7 +17,7 @@ public class CStrategy implements IStrategy  {
 		listOfChannels.add("Technology");
 		AbstractEvent event = EventFactory.createEvent(EventType.TypeC, publisherId, new EventMessage("h1", "b1")); 
 		ChannelEventDispatcher.getInstance().postEvent(event, listOfChannels);
-		System.out.println("Publisher with PubId: " + publisherId + " has published a default event," + event);	
+		System.out.println("Publisher with PubId: " + publisherId + " has published a default event," + event + " in Cs");	
 		
 	}
 

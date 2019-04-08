@@ -9,13 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import events.AbstractEvent;
-import events.EventFactory;
 import events.EventMessage;
-import events.EventType;
 import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import pubSubServer.AbstractChannel;
-import pubSubServer.ChannelAccessControl;
 import pubSubServer.ChannelDiscovery;
 import pubSubServer.SubscriptionManager;
 import publishers.AbstractPublisher;
@@ -123,13 +119,13 @@ public class Orchestration {
 				}
 				
 				else if (PathConfigArray[0].equals("BLOCK")) {
-					SubscriptionManager m = new SubscriptionManager();
+					SubscriptionManager m = SubscriptionManager.getInstance();
 					m.unSubscribe(PathConfigArray[2], subscriberMap.get(Integer.parseInt(PathConfigArray[1])));
 					System.out.println("\nSubscriber with SubID: " + PathConfigArray[1] + " blocked the channel " + PathConfigArray[2]);
 				}
 				
 				else if (PathConfigArray[0].equals("UNBLOCK")) {
-					SubscriptionManager m = new SubscriptionManager();
+					SubscriptionManager m = SubscriptionManager.getInstance();
 					m.subscribe(PathConfigArray[2], subscriberMap.get(Integer.parseInt(PathConfigArray[1])));
 					System.out.println("\nSubscriber with SubID: " + PathConfigArray[1] + " unblocked the channel " + PathConfigArray[2]);
 				}

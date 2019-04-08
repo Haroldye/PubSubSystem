@@ -22,7 +22,7 @@ public class ChannelPoolManager {
 	private static ChannelPoolManager instance = null;
 	private Map<String, AbstractChannel> channelsMap = new HashMap<String, AbstractChannel>();
 	private List<AbstractChannel> channelList = new ArrayList<AbstractChannel>();
-
+	// do channel.suber
 	private ChannelPoolManager() {
 		try {
 		BufferedReader channelListReader = new BufferedReader(new FileReader(new File("Channels.chl")));

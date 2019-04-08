@@ -33,7 +33,7 @@ class Channel extends AbstractChannel {
 		notifySubscribers(event);
 
 	}
-
+//add get suber method debug
 	
 	/* (non-Javadoc)
 	 * @see pubSubServer.AbstractChannel#subscribe(subscribers.ISubscriber)
@@ -63,11 +63,15 @@ class Channel extends AbstractChannel {
 	 * @param event the event that's to be disseminated to the subscribers
 	 */
 	private void notifySubscribers(AbstractEvent event) {
+		System.out.println("start notifying sub ");
 		AbstractEvent currentEvent; 
 		currentEvent = event;
 		for(AbstractSubscriber subscriber : subscribers) {
 			// alert the unblocked sub only
+			// observation s
+			System.out.println("obtaining sub " + subscriber);
 			if (!ChannelAccessControl.getInstance().checkIfBlocked(subscriber, channelTopic)) {
+				System.out.println("sub to be alerted" + subscriber);
 				subscriber.alert(currentEvent, channelTopic);
 			}
 		}

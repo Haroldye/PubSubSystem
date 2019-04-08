@@ -22,7 +22,7 @@ public class SubscriptionManager {
 	private Map<AbstractSubscriber, String> subChannelMap = new HashMap<AbstractSubscriber, String>();
 	//private List<AbstractSubscriber> subscriberlList = new ArrayList<AbstractSubscriber>();
 	
-	public SubscriptionManager() {
+	private SubscriptionManager() {
 		cpManager = ChannelPoolManager.getInstance();
 		/*
 		String defaultChannel = "main";
@@ -48,9 +48,9 @@ public class SubscriptionManager {
 	public void subscribe(String channelName, AbstractSubscriber subscriber) {
 			
 		AbstractChannel channel = cpManager.findChannel(channelName);
-		//channel.subscribe(subscriber);
-		if (channel != null)
-			subChannelMap.put(subscriber, channelName);
+		channel.subscribe(subscriber);
+		//if (channel != null)
+			//subChannelMap.put(subscriber, channelName);
 		//System.out.println("Subscriber has subscribed channel " + channelName);
 	}
 	
@@ -62,8 +62,9 @@ public class SubscriptionManager {
 	public void unSubscribe(String channelName, AbstractSubscriber subscriber) {
 		
 		AbstractChannel channel = cpManager.findChannel(channelName);
-		if (channel != null)
-			subChannelMap.remove(subscriber, channelName);
+		channel.unsubscribe(subscriber);
+		//if (channel != null)
+			//subChannelMap.remove(subscriber, channelName);
 		//System.out.println("Subscriber has unSubscribed channel " + channelName);
 		
 	}
