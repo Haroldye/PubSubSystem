@@ -66,6 +66,7 @@ class Channel extends AbstractChannel {
 		AbstractEvent currentEvent; 
 		currentEvent = event;
 		for(AbstractSubscriber subscriber : subscribers) {
+			// alert the unblocked sub only
 			if (!ChannelAccessControl.getInstance().checkIfBlocked(subscriber, channelTopic)) {
 				subscriber.alert(currentEvent, channelTopic);
 			}

@@ -80,7 +80,7 @@ public class Orchestration {
 			publisher.publish();
 		}
 
-
+/*
 		try {
 
 			BufferedReader PathBufferedReader = new BufferedReader(new FileReader(new File("path.txt")));
@@ -121,7 +121,7 @@ public class Orchestration {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+*/
 
 	}
 

@@ -4,7 +4,8 @@ import publishers.AbstractPublisher;
 
 
 /**
- * @author kkontog, ktsiouni, mgrigori, Syeda Nehal Hussain 
+ * @author kkontog, ktsiouni, mgrigori, 
+ * @editedBy Syeda Nehal Hussain; Howar
  *
  */
 public class EventFactory {
@@ -26,6 +27,8 @@ public class EventFactory {
 			return new EventTypeA(EventIDMaker.getNewEventID(), eventPublisherId, payload);
 		case TypeB:
 			return new EventTypeB(EventIDMaker.getNewEventID(), eventPublisherId, payload);
+		case TypeC:
+			return new EventTypeC(EventIDMaker.getNewEventID(), eventPublisherId, payload);
 		default :
 			return new EventTypeC(EventIDMaker.getNewEventID(), eventPublisherId, payload);
 		}
