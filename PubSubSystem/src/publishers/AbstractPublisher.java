@@ -35,8 +35,10 @@ public abstract class AbstractPublisher implements IEntity {
 	 * @param event an event which is to be published
 	 * 
 	 */
-	public void publish() {}
+	public void publish() {};
+	
+	public void publish(int pubID) {};
 
-	public void publish(String string, EventMessage eMsg) {};
+	public void publish(String string, int parseInt, EventMessage eMsg) {}
 
 }

@@ -17,7 +17,7 @@ public class AStrategy implements IStrategy {
 		listOfChannels.add("Motor Bikes");
 		AbstractEvent event = EventFactory.createEvent(EventType.TypeA, publisherId, new EventMessage("h1", "b1")); 
 		ChannelEventDispatcher.getInstance().postEvent(event, listOfChannels);
-		System.out.println("Publisher " + publisherId + " has published a default event," + event);
+		System.out.println("Publisher with PubId: " + publisherId + " has published a default event," + event);
 		
 	}
 
@@ -26,7 +26,7 @@ public class AStrategy implements IStrategy {
 		listOfChannels.add("Cars");
 		listOfChannels.add("Motor Bikes");
 		ChannelEventDispatcher.getInstance().postEvent(event, listOfChannels);
-		System.out.println("Publisher " + publisherId + " has published an event, " + event);
+		System.out.println("Publisher with PubId: " + publisherId + " has published an event, " + event);
 		
 	}
 

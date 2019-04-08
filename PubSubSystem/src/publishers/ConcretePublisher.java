@@ -3,6 +3,7 @@ package publishers;
 import events.AbstractEvent;
 import events.EventFactory;
 import events.EventMessage;
+import events.EventType;
 import strategies.publisher.IStrategy;
 import strategies.publisher.StrategyFactory;
 
@@ -44,7 +45,18 @@ public class ConcretePublisher extends AbstractPublisher {
 		publishingStrategy.doPublish(this.hashCode());
 	}
 	
-	public void publish(String type, EventMessage msg) {
-		System.out.println("Eventtype: " + type + " and event msg " + msg + " has been published");
+	public void publish(int pubID) {
+		publishingStrategy.doPublish(pubID);
+	}
+	
+	public void publish(String type, int pubID, EventMessage msg) {
+		switch (type) {
+		case "TypeA" : EventFactory.createEvent(EventType.TypeA, pubID, msg);
+		case "TypeB" : EventFactory.createEvent(EventType.TypeB, pubID, msg);
+		case "TypeC" : EventFactory.createEvent(EventType.TypeC, pubID, msg);
+		default : EventFactory.createEvent(EventType.TypeA, pubID, msg);
+		}
+		
+		System.out.println("publisher with pubID: " + pubID + " has published Eventtype: "  + type + " event and event msg " + msg);
 	}
 }

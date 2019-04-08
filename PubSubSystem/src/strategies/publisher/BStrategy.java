@@ -17,7 +17,7 @@ public class BStrategy implements IStrategy{
 		listOfChannels.add("Snacks");
 		AbstractEvent event = EventFactory.createEvent(EventType.TypeB, publisherId, new EventMessage("h1", "b1")); 
 		ChannelEventDispatcher.getInstance().postEvent(event, listOfChannels);
-		System.out.println("Publisher " + publisherId + " has published a default event," + event);	
+		System.out.println("Publisher with PubId: " + publisherId + " has published a default event," + event);	
 	}
 
 	public void doPublish(AbstractEvent event, int publisherId) {
@@ -25,7 +25,7 @@ public class BStrategy implements IStrategy{
 		listOfChannels.add("Pringles");
 		listOfChannels.add("Snacks");
 		ChannelEventDispatcher.getInstance().postEvent(event, listOfChannels);
-		System.out.println("Publisher " + publisherId + " has published an event, " + event);
+		System.out.println("Publisher with PubId: " + publisherId + " has published an event, " + event);
 		
 	}
 }

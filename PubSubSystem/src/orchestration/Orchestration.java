@@ -125,7 +125,7 @@ public class Orchestration {
 		}
 */
 	/**
-	 * My implementation	
+	 * Driving the program test	
 	 * @author H. Ye
 	 */
 		System.out.println("\nTest for driving the program: ");
@@ -143,21 +143,22 @@ public class Orchestration {
 				
 				else if (PathConfigArray[0].equals("PUB")) {
 					if (PathConfigArray.length == 2) {
-						publisherMap.get(Integer.parseInt(PathConfigArray[1])).publish();
+						publisherMap.get(Integer.parseInt(PathConfigArray[1])).publish(Integer.parseInt(PathConfigArray[1]));
 					}					
 					else if (PathConfigArray.length == 5) {						
 						//String eType;
 						EventMessage eMsg = new EventMessage(PathConfigArray[3],PathConfigArray[4]);
 						switch(PathConfigArray[2]) {
-						case "0": PathConfigArray[2] = "TypeA";
-						case "1": PathConfigArray[2] = "TypeB";
+						case "0": PathConfigArray[2] = "TypeA";//PathConfigArray[2].replaceAll("","TypeA");
+						case "1": PathConfigArray[2] = "TypeB";//PathConfigArray[2].replaceAll("","TypeB");
 						case "2": PathConfigArray[2] = "TypeC";
-						default: PathConfigArray[2] = "TypeA";
-						}/*
+						default: ;
+						}						
+						/*
 						AbstractEvent newEvent;
 						newEvent = new EventFactory();
 						EventFactory.createEvent(EventType.values()[eType], Integer.parseInt(PathConfigArray[1]), eMsg);*/
-						publisherMap.get(Integer.parseInt(PathConfigArray[1])).publish(PathConfigArray[2],eMsg);;
+						publisherMap.get(Integer.parseInt(PathConfigArray[1])).publish(PathConfigArray[2], Integer.parseInt(PathConfigArray[1]), eMsg);;
 					}
 					else						
 						System.out.println("Wrong input in path.txt file");
