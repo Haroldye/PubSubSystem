@@ -63,7 +63,7 @@ class Channel extends AbstractChannel {
 	 * @param event the event that's to be disseminated to the subscribers
 	 */
 	private void notifySubscribers(AbstractEvent event) {
-		System.out.println("start notifying sub ");
+		//System.out.println("start notifying sub ");
 		AbstractEvent currentEvent; 
 		currentEvent = event;
 		for(AbstractSubscriber subscriber : subscribers) {

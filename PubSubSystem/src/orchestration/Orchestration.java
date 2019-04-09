@@ -82,7 +82,7 @@ public class Orchestration {
 	 * Driving the program test	
 	 * @author H. Ye
 	 */
-		System.out.println("\nTest for driving the program: ");
+		System.out.println("\n\n\n\n\n\n\nTest for driving the program: ");
 		try {
 			BufferedReader PathReader = new BufferedReader(new FileReader(new File("path.txt")));
 			while(PathReader.ready()) {

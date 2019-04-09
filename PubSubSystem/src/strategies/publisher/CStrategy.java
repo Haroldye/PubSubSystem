@@ -13,8 +13,8 @@ public class CStrategy implements IStrategy  {
 
 	public void doPublish(int publisherId) {
 		List<String> listOfChannels = new ArrayList<String>();
-		listOfChannels.add("Apple");
-		listOfChannels.add("Technology");
+		listOfChannels.add("laptop");
+		listOfChannels.add("technology");
 		AbstractEvent event = EventFactory.createEvent(EventType.TypeC, publisherId, new EventMessage("h1", "b1")); 
 		ChannelEventDispatcher.getInstance().postEvent(event, listOfChannels);
 		System.out.println("Publisher with PubId: " + publisherId + " has published a default event," + event + " in Cs");	
@@ -23,8 +23,8 @@ public class CStrategy implements IStrategy  {
 
 	public void doPublish(AbstractEvent event, int publisherId) {
 		List<String> listOfChannels = new ArrayList<String>();
-		listOfChannels.add("Apple");
-		listOfChannels.add("Technology");
+		listOfChannels.add("laptop");
+		listOfChannels.add("technology");
 		ChannelEventDispatcher.getInstance().postEvent(event, listOfChannels);
 		System.out.println("Publisher with PubId: " + publisherId + " has published an event, " + event);
 		
