@@ -35,9 +35,7 @@ public class PublisherFactory {
 			case gammaPub : 
 				ip = new ConcretePublisher(StrategyFactory.createStrategy(strategyName));
 				return ip;
-			case deltaPub : 
-				ip = new ConcretePublisher(StrategyFactory.createStrategy(strategyName));
-				return ip;
+			// deltaPub as default publisher
 			default:
 				ip = new ConcretePublisher(StrategyFactory.createStrategy(strategyName));
 				return ip;

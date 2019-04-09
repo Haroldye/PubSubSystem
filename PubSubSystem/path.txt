@@ -2,14 +2,13 @@ SUB 0 cars
 PUB 2
 PUB 0 TypeB h1 p1
 SUB 1 general
-PUB 4 2 header body
+PUB 4 TypeA header body
 SUB 5 food
 SUB 5 cars
-SUB 5 snack
 PUB 3
-SUB 1 snack
+SUB 1 laptop
 PUB 6
-BLOCK 1 snack
-PUB 6
-UNBLOCK 1 snack
-PUB 6
+BLOCK 1 laptop
+PUB 6 TypeB h1 p1
+UNBLOCK 1 laptop
+PUB 6 TypeB h1 p1

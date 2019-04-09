@@ -6,7 +6,6 @@ import publishers.AbstractPublisher;
 /**
  * @author kkontog, ktsiouni, mgrigori, 
  * @editedBy Syeda Nehal Hussain; 
- * @editedBy Howar
  *
  */
 public class EventFactory {
@@ -30,6 +29,7 @@ public class EventFactory {
 			return new EventTypeB(EventIDMaker.getNewEventID(), eventPublisherId, payload);
 		case TypeC:
 			return new EventTypeC(EventIDMaker.getNewEventID(), eventPublisherId, payload);
+		// default is to TypeC
 		default :
 			return new EventTypeC(EventIDMaker.getNewEventID(), eventPublisherId, payload);
 		}

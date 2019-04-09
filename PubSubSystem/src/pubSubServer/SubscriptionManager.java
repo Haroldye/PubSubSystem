@@ -19,7 +19,7 @@ import subscribers.AbstractSubscriber;
 public class SubscriptionManager {
 	private static SubscriptionManager instance = null;
 	private ChannelPoolManager cpManager;
-	private Map<AbstractSubscriber, String> subChannelMap = new HashMap<AbstractSubscriber, String>();
+	//private Map<AbstractSubscriber, String> subChannelMap = new HashMap<AbstractSubscriber, String>();
 	//private List<AbstractSubscriber> subscriberlList = new ArrayList<AbstractSubscriber>();
 	
 	private SubscriptionManager() {

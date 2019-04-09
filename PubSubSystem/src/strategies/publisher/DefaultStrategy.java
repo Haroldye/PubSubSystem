@@ -15,7 +15,7 @@ public class DefaultStrategy implements IStrategy {
 		List<String> listOfChannels = new ArrayList<String>();
 		listOfChannels.add("general");
 		listOfChannels.add("main");
-		AbstractEvent event = EventFactory.createEvent(EventType.TypeA, publisherId, new EventMessage("h1", "b1")); 
+		AbstractEvent event = EventFactory.createEvent(EventType.TypeC, publisherId, new EventMessage("h1", "b1")); 
 		ChannelEventDispatcher.getInstance().postEvent(event, listOfChannels);
 		System.out.println("Publisher with PubId: " + publisherId + " has published a default event," + event + " in Ds");
 		
@@ -27,7 +27,7 @@ public class DefaultStrategy implements IStrategy {
 		listOfChannels.add("general");
 		listOfChannels.add("main");
 		ChannelEventDispatcher.getInstance().postEvent(event, listOfChannels);
-		System.out.println("Publisher with PubId: " + publisherId + " has published an event, " + event);
+		System.out.println("Publisher with PubId: " + publisherId + " has published an event, " + event + " in Ds");
 		
 	}
 	

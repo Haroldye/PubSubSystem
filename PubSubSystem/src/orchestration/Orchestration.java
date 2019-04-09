@@ -9,7 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import events.AbstractEvent;
+import events.EventFactory;
 import events.EventMessage;
+import events.EventType;
 import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import pubSubServer.AbstractChannel;
 import pubSubServer.ChannelDiscovery;
@@ -86,6 +89,7 @@ public class Orchestration {
 		try {
 			BufferedReader PathReader = new BufferedReader(new FileReader(new File("path.txt")));
 			while(PathReader.ready()) {
+				System.out.println("\n");
 				String PathConfigLine = PathReader.readLine();
 				String[] PathConfigArray = PathConfigLine.split(" ");
 				
@@ -97,22 +101,30 @@ public class Orchestration {
 				
 				else if (PathConfigArray[0].equals("PUB")) {
 					if (PathConfigArray.length == 2) {
-						publisherMap.get(Integer.parseInt(PathConfigArray[1])).publish(Integer.parseInt(PathConfigArray[1]));
+						publisherMap.get(Integer.parseInt(PathConfigArray[1])).publish();
+						System.out.println("main(), default pub \n"); 
 					}					
 					else if (PathConfigArray.length == 5) {						
 						//String eType;
 						EventMessage eMsg = new EventMessage(PathConfigArray[3],PathConfigArray[4]);
+						EventType e = null;
 						switch(PathConfigArray[2]) {
-						case "0": PathConfigArray[2] = "TypeA";//PathConfigArray[2].replaceAll("","TypeA");
-						case "1": PathConfigArray[2] = "TypeB";//PathConfigArray[2].replaceAll("","TypeB");
-						case "2": PathConfigArray[2] = "TypeC";
-						default: ;
-						}						
-						/*
-						AbstractEvent newEvent;
-						newEvent = new EventFactory();
-						EventFactory.createEvent(EventType.values()[eType], Integer.parseInt(PathConfigArray[1]), eMsg);*/
-						publisherMap.get(Integer.parseInt(PathConfigArray[1])).publish(PathConfigArray[2], Integer.parseInt(PathConfigArray[1]), eMsg);;
+						case "TypeA": 
+							e = EventType.TypeA;
+							break;//PathConfigArray[2].replaceAll("","TypeA");
+						case "TypeB": 
+							e = EventType.TypeB;
+							break;//PathConfigArray[2].replaceAll("","TypeB");
+						case "TypeC": 
+							e = EventType.TypeC;
+							break;
+						default: e = EventType.TypeC; break;
+						}								
+						
+						AbstractEvent newEvent = EventFactory.createEvent(e, Integer.parseInt(PathConfigArray[1]), eMsg);
+												
+						publisherMap.get(Integer.parseInt(PathConfigArray[1])).publish(newEvent);
+						System.out.println("main(), pub with type " + PathConfigArray[2]);
 					}
 					else						
 						System.out.println("Wrong input in path.txt file");

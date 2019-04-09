@@ -44,7 +44,7 @@ public class ConcretePublisher extends AbstractPublisher {
 	public void publish() {
 		publishingStrategy.doPublish(this.hashCode());
 	}
-	
+	/*
 	public void publish(int pubID) {
 		publishingStrategy.doPublish(pubID);
 	}
@@ -58,5 +58,5 @@ public class ConcretePublisher extends AbstractPublisher {
 		}
 		
 		System.out.println("publisher with pubID: " + pubID + " has published Eventtype: "  + type + " event and event msg " + msg);
-	}
+	}*/
 }
