@@ -13,7 +13,7 @@ public class BStrategy implements IStrategy{
 
 	public void doPublish(int publisherId) {
 		List<String> listOfChannels = new ArrayList<String>();
-		listOfChannels.add("food");
+		//listOfChannels.add("food");
 		listOfChannels.add("snacks");
 		AbstractEvent event = EventFactory.createEvent(EventType.TypeB, publisherId, new EventMessage("h1", "b1")); 
 		ChannelEventDispatcher.getInstance().postEvent(event, listOfChannels);

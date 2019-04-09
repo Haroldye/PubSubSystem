@@ -1,7 +1,7 @@
-SUB 0 cars   		
+SUB 0 snacks 		
 PUB 2
 PUB 0 TypeB h1 p1
-SUB 1 general
+SUB 1 food
 PUB 4 TypeA header body
 SUB 5 food
 SUB 5 cars

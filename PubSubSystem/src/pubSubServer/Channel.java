@@ -69,7 +69,7 @@ class Channel extends AbstractChannel {
 		for(AbstractSubscriber subscriber : subscribers) {
 			// alert the unblocked sub only
 			// observation s
-			System.out.println("obtaining sub " + subscriber);
+			//System.out.println("obtaining sub " + subscriber);
 			if (!ChannelAccessControl.getInstance().checkIfBlocked(subscriber, channelTopic)) {
 				System.out.println("sub to be alerted" + subscriber);
 				subscriber.alert(currentEvent, channelTopic);

@@ -89,7 +89,7 @@ public class Orchestration {
 		try {
 			BufferedReader PathReader = new BufferedReader(new FileReader(new File("path.txt")));
 			while(PathReader.ready()) {
-				System.out.println("\n");
+				System.out.println("\n*****************************************************");
 				String PathConfigLine = PathReader.readLine();
 				String[] PathConfigArray = PathConfigLine.split(" ");
 				
@@ -102,7 +102,7 @@ public class Orchestration {
 				else if (PathConfigArray[0].equals("PUB")) {
 					if (PathConfigArray.length == 2) {
 						publisherMap.get(Integer.parseInt(PathConfigArray[1])).publish();
-						System.out.println("main(), default pub \n"); 
+						System.out.println("main(), default pub"); 
 					}					
 					else if (PathConfigArray.length == 5) {						
 						//String eType;
@@ -133,13 +133,13 @@ public class Orchestration {
 				else if (PathConfigArray[0].equals("BLOCK")) {
 					SubscriptionManager m = SubscriptionManager.getInstance();
 					m.unSubscribe(PathConfigArray[2], subscriberMap.get(Integer.parseInt(PathConfigArray[1])));
-					System.out.println("\nSubscriber with SubID: " + PathConfigArray[1] + " blocked the channel " + PathConfigArray[2]);
+					System.out.println("Subscriber with SubID: " + PathConfigArray[1] + " blocked the channel " + PathConfigArray[2]);
 				}
 				
 				else if (PathConfigArray[0].equals("UNBLOCK")) {
 					SubscriptionManager m = SubscriptionManager.getInstance();
 					m.subscribe(PathConfigArray[2], subscriberMap.get(Integer.parseInt(PathConfigArray[1])));
-					System.out.println("\nSubscriber with SubID: " + PathConfigArray[1] + " unblocked the channel " + PathConfigArray[2]);
+					System.out.println("Subscriber with SubID: " + PathConfigArray[1] + " unblocked the channel " + PathConfigArray[2]);
 				}
 				
 				else
